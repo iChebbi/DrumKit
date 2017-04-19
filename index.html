@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>DrumKit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url(drum.jpg);
+            background-size: cover;
+        }
+        
+        .keys {
+            text-align: center;
+            position: absolute;
+            top: 65vh;
+            left: 10vw;
+        }
+        
+        .key {
+            margin: 10px;
+            padding: 10px;
+            color: #ffc600;
+            border: 5px solid black;
+            border-radius: 5px;
+            width: 100px;
+            text-align: center;
+            display: inline-block;
+            transition: all 0.07s;
+        }
+        
+        .playing {
+            transform: scale(1.1);
+            border: 4px solid yellow;
+            box-shadow: 0 0 10px #ffc600;
+        }
+        
+        h3 {
+            display: block;
+        }
+        
+        .sound {
+            color: #ffc600;
+            text-shadow: 0 0 10px;
+        }
+        
+        .footer {
+            margin: auto;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="keys">
+        <div data-key="81" class="key">
+            <h3>Q</h3>
+            <div class="sound">CLAP</div>
+        </div>
+        <div data-key="83" class="key">
+            <h3>S</h3>
+            <div class="sound">HIHAT</div>
+        </div>
+        <div data-key="68" class="key">
+            <h3>D</h3>
+            <div class="sound">KICK</div>
+        </div>
+        <div data-key="70" class="key">
+            <h3>F</h3>
+            <div class="sound">OPENHAT</div>
+        </div>
+        <div data-key="71" class="key">
+            <h3>G</h3>
+            <div class="sound">BOOM</div>
+        </div>
+        <div data-key="72" class="key">
+            <h3>H</h3>
+            <div class="sound">RIDE</div>
+        </div>
+        <div data-key="74" class="key">
+            <h3>J</h3>
+            <div class="sound">SNARE</div>
+        </div>
+        <div data-key="75" class="key">
+            <h3>K</h3>
+            <div class="sound">TOM</div>
+        </div>
+        <div data-key="76" class="key">
+            <h3>L</h3>
+            <div class="sound">TINK</div>
+        </div>
+    </div>
+
+    <audio data-key="81" src="sounds/clap.wav"></audio>
+    <audio data-key="83" src="sounds/hihat.wav"></audio>
+    <audio data-key="68" src="sounds/kick.wav"></audio>
+    <audio data-key="70" src="sounds/openhat.wav"></audio>
+    <audio data-key="71" src="sounds/boom.wav"></audio>
+    <audio data-key="72" src="sounds/ride.wav"></audio>
+    <audio data-key="74" src="sounds/snare.wav"></audio>
+    <audio data-key="75" src="sounds/tom.wav"></audio>
+    <audio data-key="76" src="sounds/tink.wav"></audio>
+
+
+
+    <div class="footer">
+        Chebbi Aymen
+    </div>
+    <script>
+        function playSound(e) {
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+            if (!audio) return;
+            audio.currentTime = 0;
+            audio.play();
+            key.classList.add("playing");
+        }
+
+        function removeTrans(e) {
+            if (e.propertyName !== 'transform') return;
+            this.classList.remove("playing");
+        }
+        const keys = document.querySelectorAll(".key");
+        keys.forEach(key => key.addEventListener('transitionend', removeTrans));
+        window.addEventListener('keydown', playSound);
+    </script>
+</body>
+
+</html>
