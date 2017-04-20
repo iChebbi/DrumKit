@@ -8,15 +8,13 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <style>
         body {
-            background-image: url(drum.jpg);
-            background-size: cover;
+            background-image: url(darkDrum.jpg);
         }
         
         .keys {
             text-align: center;
             position: absolute;
-            top: 65vh;
-            left: 15vw;
+            top: 45%
         }
         
         .key {
@@ -39,6 +37,7 @@
         
         h3 {
             display: block;
+            text-shadow: 0 0 10px #ffc600;
         }
         
         .sound {
@@ -57,7 +56,7 @@
 
 <body>
 
-    <div class="keys">
+    <div class="container keys col-xs-offset-2 col-xs-8">
         <div data-key="81" class="key">
             <h3>Q</h3>
             <div class="sound">CLAP</div>
